@@ -1,5 +1,3 @@
-const { put } = require("../../../routes");
-
 const $backBtn = document.querySelector('#back-btn');
 const $pizzaName = document.querySelector('#pizza-name');
 const $createdBy = document.querySelector('#created-by');
@@ -116,7 +114,8 @@ function handleNewCommentSubmit(event) {
   fetch(`/api/comments/${pizzaId}`, {
     method: 'POST',
     headers: {
-      Accept: 'application/json'
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(formData)
   })
@@ -154,7 +153,7 @@ function handleNewReplySubmit(event) {
   const formData = { writtenBy, replyBody };
 
   fetch(`/api/comments/${pizzaId}/${commentId}`, {
-    method: put,
+    method: 'PUT',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json'
